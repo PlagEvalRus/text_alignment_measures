@@ -99,6 +99,18 @@ make_row_from_std_metrics(){
     echo "$prec,$rec,$plagdet"
 }
 
+parse_run_name(){
+
+    local run_name="$(basename $results_dir)"
+    if [ "$run_name" == "output" ];then
+        run_name="$(basename $(dirname $results_dir))"
+    else
+        run_name="$results_dir"
+    fi
+    echo "$run_name"
+
+
+}
 # set -e
 # set -xv
 
@@ -116,7 +128,7 @@ while [ $# -gt 0 ] ; do
     esac
 done
 
-run_name="$(basename $results_dir)"
+run_name="$(parse_run_name)"
 
 make_csv_header
 
