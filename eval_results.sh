@@ -20,10 +20,6 @@ run_eval_for_task(){
         sed 's/$/.xml/' | \
         xargs -I{} cp "$results_dir"/{} "$local_results_dir"/
 
-    # macro_out="$(python ./text_alignment_measures.py -p "$tasks_dir" -d "$results_dir")"
-    # echo "$macro_out"
-    # make_csv_row "$run_name" "total" "$macro_out" "$micro_out"
-
     echo "============$title MACRO============"
     local macro_out="$(python ./text_alignment_measures.py -p "$task_dir" -d "$local_results_dir")"
     echo "$macro_out"
